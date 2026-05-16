@@ -32,7 +32,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from './lib/utils';
 
-import { supabase } from './lib/supabase';
+import { supabase } from './lib/supabase.ts';
 import { 
   orderServices, 
   catalogServices, 
