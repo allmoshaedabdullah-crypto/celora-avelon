@@ -32,7 +32,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from './lib/utils';
 
-import { supabase } from './lib/supabase.ts';
+import { supabase } from './lib/supabase';
 import { 
   orderServices, 
   catalogServices, 
@@ -1472,7 +1472,7 @@ const GalleryEngine = ({ folders, setFolders, showToast, onSessionEnd }: { folde
   };
 
   const shareGalleryLink = async (id: string) => {
-    const url = new URL(window.location.href);
+    const url = new URL(window.location.origin + window.location.pathname);
     url.searchParams.set('view', 'gallery');
     url.searchParams.set('gid', id);
     const finalUrl = url.toString();
@@ -1910,7 +1910,7 @@ export default function App() {
 
   const isPublicView = useMemo(() => {
     const params = new URLSearchParams(window.location.search);
-    return params.get('view') === 'gallery';
+    return params.get('view') === 'gallery' && !!params.get('gid');
   }, []);
 
   if (isPublicView) {
